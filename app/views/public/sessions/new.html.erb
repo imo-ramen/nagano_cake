@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>ログイン</h2>
-        <h3>会員の方はこちらからログイン</h3>
+        <h4 style="background-color:grey;color:white;width:100px">ログイン</h4>
+        <h5 style="background-color:grey;color:white;width:290px">会員の方はこちらからログイン</h5>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -10,17 +10,17 @@
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
 
-          <div class="field">
+          <div class="form-group">
             <%= f.label :パスワード %>
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
 
-          <div class="actions">
-            <%= f.submit "ログイン" %>
+          <div class="form-group">
+            <%= f.submit "ログイン",class: 'btn btn-sm btn-primary' %>
           </div>
         <% end %>
-
-        <h3>会員登録がお済みでない方</h3>
+        <p></p>
+        <h4 style="background-color:grey;color:white;width:300px">会員登録がお済みでない方</h4>
 
         <%= link_to "こちら", new_customer_registration_path %><span>から新規登録を行ってください。</span>
     </div>
