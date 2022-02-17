@@ -8,14 +8,25 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
+  root to: "public/homes#top"
+  get "about" =>"public/homes#about"
+
   get "items" => "public/items#index"
   get "items/:id" => "public/items#show"
 
+
+
+
   get "customers/my_page" => "public/customers#show"
-  get "customers/edit" => "public/customers#edit"
-  patch "customers" => "public/customers#update"
-  get "customers/unsubscribe" => "public/customers#unsubscribe"
-  patch "customers/withdraw" => "public/customers#withdraw"
+
+  scope module: :public do
+    resource :customers,only: [:edit,:update] do
+      collection do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
+  end
 
   get "cart_items" => "public/cart_items#index"
   patch "cart_items/:id" => "public/cart_items#update"
