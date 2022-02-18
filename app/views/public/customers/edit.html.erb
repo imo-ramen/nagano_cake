@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h5>会員情報編集</h5>
+  </div>
+    <div class="col">
+      <% form_with model:@customer, local:true do |f| %>
+        <div class="form-group">
+          <%= f.label :名前 %>
+          <%= f.text_field :last_name, class: "form-control" %>
+          <%= f.text_field :first_name, class: "form-control" %>
+          <% end %>
+        </div>
+    </div>
+</div>
