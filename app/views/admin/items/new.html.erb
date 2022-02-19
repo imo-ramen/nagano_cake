@@ -1,17 +1,32 @@
 <div class="container">
- <h2>商品新規登録</h2>
+   <h4 style="background-color:grey;color:black;width:150px">商品新規登録</h4>
 
-  <div class="row mt-10">
-    <div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
      <%= form_with model: @item, local:true do |f| %>
       <div class="form-group">
-        <span>商品画像</span><%= file_field :item_image, accept: "image/*" %>
+        <div class="row md-3">
+          <label for="item_image" class="col-sm-2 col-form-label">商品画像</label>
+          <div class="col-sm-10">
+          <%= file_field :item_image, accept: "image/*" %>
+          </div>
+        </div>
       </div>
       <div class="form-group">
-        <span>商品名</span><%= f.text_field :name, placeholder:"商品名" %>
+        <div class="row md-3">
+          <label for="item_name" class="col-sm-2 col-form-label">商品名</label>
+          <div class="col-sm-10">
+           <%= f.text_field :name, placeholder:"商品名" %>
+          </div>
+        </div>
       </div>
       <div class="form-group">
-        <span>商品説明</span><%= f.text_area :introduction, placeholder:"ここに説明文を記述します" %>
+        <div class="row md-3">
+          <label for="item_introduction" class="col-sm-2 col-form-label">商品説明</label>
+          <div class="col-sm-10">
+            <%= f.text_area :introduction, placeholder:"ここに説明文を記述します" %>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <span>ジャンル</span>
@@ -21,11 +36,19 @@
       </div>
       <div class="form-group">
         <span>販売ステータス</span>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="Radio1" id="Radio1">
+          <label class="form-check-label" for="Radio1">販売中</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="Radio2" id="Radio2">
+          <label class="form-check-label" for="Radio2">販売停止中</label>
+        </div>
       </div>
       <div class="form-group">
         <%= f.submit "新規登録", class:"btn btn-success" %>
       </div>
-    <% end %>
+     <% end %>
    </div>
   </div>
 </div>
