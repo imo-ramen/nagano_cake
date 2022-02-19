@@ -13,19 +13,23 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-    # @book = Book.find(params[:id])
-    # @book.destroy
-    # redirect_to request.referer
+    address = Address.find(params[:id])
+    address.destroy
+    redirect_to request.referer
   end
 
   def edit
-    # @book = Book.find(params[:id])
+    @address = Address.find(params[:id])
   end
-
 
   def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to addresses_path,notice: "You have updated user successfully."
+    else
+      render request.referer
+    end
   end
-
 
   private
 
