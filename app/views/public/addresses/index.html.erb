@@ -28,7 +28,7 @@
             <th>郵便番号</th>
             <th>住所</th>
             <th>宛名</th>
-            <th colspan="2"></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -37,8 +37,10 @@
             <td><%= a.postal_code %></td>
             <td><%= a.address %></td>
             <td><%= a.name %></td>
-            <td><%= link_to "編集する", edit_address_path(a.id), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to "消去する", address_path(a.id), method: :delete,class: "btn btn-sm btn-danger" %></td>
+            <td>
+              <%= link_to "編集する", edit_address_path(a.id), class: "btn btn-sm btn-success" %>
+              <%= link_to "消去する", address_path(a.id), method: :delete,class: "btn btn-sm btn-danger" %>
+            </td>
           </tr>
           <% end %>
         </tbody>
