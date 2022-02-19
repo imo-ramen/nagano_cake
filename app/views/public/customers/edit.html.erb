@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <h5>会員情報編集</h5>
+  </div>
+      <%# form_with model:@customer,url: customers_path, local:true do |f| %>
+        <div class="row form-group">
+          <%#= f.label :氏名 %>
+          <%#= f.text_field :last_name, placeholder:"sample@example.com" %>
+          <%#= f.text_field :first_name, placeholder:"form-control" %>
+        </div>
+        <div class="row form-group">
+          <%#= f.label :フリガナ %>
+          <%#= f.text_field :last_name_kana,placeholder:"kkk" %>
+          <%#= f.text_field :first_name_kana,placeholder:"kkk" %>
+        </div>
+      <%# end %>
+</div>

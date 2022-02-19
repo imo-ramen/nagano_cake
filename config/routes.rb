@@ -1,21 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admins,skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-  }
-
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-  }
 
   root to: "public/homes#top"
   get "about" =>"public/homes#about"
 
-  get "items" => "public/items#index"
-  get "items/:id" => "public/items#show"
-
-
-
+  resources :items, only: [:index, :show]
 
   get "customers/my_page" => "public/customers#show"
 
@@ -28,24 +16,20 @@ Rails.application.routes.draw do
     end
   end
 
-  get "cart_items" => "public/cart_items#index"
-  patch "cart_items/:id" => "public/cart_items#update"
-  delete "cart_items/:id" => "public/cart_items#destroy"
-  delete "cart_items/destroy_all" => "public/cart_items#destroy_all"
-  post "cart_items" => "public/cart_items#create"
+  resources :cart_items, only: [:index, :update, :destroy, :create] do
+    collection do
+      delete :destroy_all
+    end
+  end
 
-  get "orders/new" => "public/orders#new"
-  post "orders/confirm" => "public/orders#confirm"
-  get "orders/complete" => "public/orders#complete"
-  post "orders" => "public/orders#create"
-  get "orders" => "public/orders#index"
-  get "orders/:id" => "public/orders#show"
+  resources :orders, only: [:new, :create, :index, :show] do
+    collection do
+      post :confirm
+      get :complete
+    end
+  end
 
-  get "addresses/:id/edit" => "public/addresses#edit"
-  get "addresses" => "public/addresses#index"
-  post "addresses" => "public/addresses#create"
-  patch "addresses/:id" => "public/addresses#update"
-  delete "addresses/:id" => "public/addresses#destroy"
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
 
   namespace :admin do
@@ -58,5 +42,13 @@ Rails.application.routes.draw do
   end
   end
 
+  devise_for :admins,skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+  }
+
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
