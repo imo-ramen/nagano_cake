@@ -3,11 +3,27 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   get "about" =>"public/homes#about"
 
-  resources :items, only: [:index, :show]
 
   get "customers/my_page" => "public/customers#show"
 
   scope module: :public do
+
+    resources :items, only: [:index, :show]
+
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+    collection do
+      delete :destroy_all
+    end
+  end
+
+    resources :orders, only: [:new, :create, :index, :show] do
+    collection do
+      post :confirm
+      get :complete
+    end
+  end
+
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resource :customers,only: [:edit,:update] do
       collection do
         get :unsubscribe
@@ -16,29 +32,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :cart_items, only: [:index, :update, :destroy, :create] do
-    collection do
-      delete :destroy_all
-    end
-  end
-
-  resources :orders, only: [:new, :create, :index, :show] do
-    collection do
-      post :confirm
-      get :complete
-    end
-  end
-
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-
-
   namespace :admin do
     get "admin" => "admin/homes#top"
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :customers,only: [:index,:show,:edit,:update]
     resources :orders,only: [:show,:update]do
-      resources :orders_details,only: [:update]
+    resources :orders_details,only: [:update]
   end
   end
 
