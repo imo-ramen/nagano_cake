@@ -1,3 +1,29 @@
 <div class="container">
-   <h5 style="background-color:grey;color:white;width:80px">商品詳細</h5>
+   <h5 style="background-color:grey;color:white;width:80px">会員一覧</h5>
+   <table class='table'>
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= link_to customer.name ,admin_customer_path(customer.id) %></td>
+          <td><%= customer.email %></td>
+          <td>
+            <% if customer.is_deleted == true %>
+              <%= "有効" %>
+            <% else %>
+              <%= "退会" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
