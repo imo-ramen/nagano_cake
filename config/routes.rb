@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "admin" => "admin/homes#top"
+    get "/" => "homes#top"
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :customers,only: [:index,:show,:edit,:update]
