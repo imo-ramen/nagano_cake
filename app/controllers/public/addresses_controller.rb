@@ -27,7 +27,7 @@ class Public::AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to addresses_path,notice: "You have updated user successfully."
     else
-      render request.referer
+      render :edit
     end
   end
 
