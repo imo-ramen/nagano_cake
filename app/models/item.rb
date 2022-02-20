@@ -6,7 +6,12 @@ class Item < ApplicationRecord
   has_one_attached :item_image
 
   def get_item_image
-    item_image.attached? ? item_image : 'no_image.jpg'
+    
+    (item_image.attached?) ? item_image : 'no_image.jpg'
+  end
+
+  def  add_tax_price
+  (self.price * 1.10).round
   end
 
   def with_tax_price
