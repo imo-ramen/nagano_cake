@@ -2,6 +2,6 @@
 <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
 <%= f.label :name,"ジャンル名" %>
 <%= f.text_field :name, class: 'form-control book_title' %>
-<%= link_to "変更を保存する", admin_genre_path,class: 'btn btn-success' %>
+<%= f.submit "変更を保存する",class: 'btn btn-success' %>
 <% end %>
 
