@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @orders = Order.new(order_params)
-    @orders.customer_id = current_customer.id
+    # @orders.customer_id = current_customer.id
     @orders.save
     current_customer.cart_items.destroy_all
     redirect_to complete_orders_path
