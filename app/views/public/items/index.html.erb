@@ -1,19 +1,20 @@
 <div class ="container">
   <h3>商品一覧<small>(全</small><small><%= @items.count %></small><small>件)</small></h3>
   <div class="row">
-    <div class="col">
+
 
 <% @items.each do |item| %>
-<div class= style="width: 18rem;">
-  <div class="card-img-top"><%= image_tag item.get_item_image %></div>
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to item.name ,item_path(item.id) %></h5>
-    <p class="card-text">￥<%= item.price %></p>
-  </div>
+<div class="col-3 pr-4">
+
+    <div><%= image_tag item.get_item_image %></div>
+    <%= link_to item.name ,item_path(item.id) %>
+    <p>￥<%= item.price %></p>
+
+
 </div>
 <% end %>
 
-    </div>
+
   </div>
 </div>
 

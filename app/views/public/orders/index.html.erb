@@ -13,12 +13,18 @@
         </tr>
         <% @orders.each do |order| %>
         <tr>
-          <td><%#日付け %></td>
+          <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
           <td>
              〒<%= order.postal_code %>
              <%= order.address %>
              <%= order.name %>
           </td>
+          <% order.order_item.each do |order_item| %>
+            <td><%= order_item.item.name %></td>
+          <% end %>
+          <td><%= order.total_payment.to_s(:delimited) %>円</td>
+          <td><%= order.status %></td>
+          <td><%= link_to "表示する", order_path(order), class: "btn btn-success" %></td>
         </tr>
         <% end %>
       </table>
