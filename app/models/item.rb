@@ -4,7 +4,18 @@ class Item < ApplicationRecord
   belongs_to :genre
 
   has_one_attached :item_image
-  def get_item_imege
-    item_image.attached? ? item_image : 'no_image.jpg'
+  validates :name, :introduction, :price, :is_active, presence: :true
+
+  def get_item_image
+    (item_image.attached?) ? item_image : 'no_image.jpg'
   end
+
+  def  add_tax_price
+  (self.price * 1.10).round
+  end
+
+  def with_tax_price
+    (price * 1.1).floor
+  end
+
 end

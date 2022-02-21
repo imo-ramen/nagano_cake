@@ -1,8 +1,7 @@
 <header>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <div class="col">
-      <div class="navbar-brand">Naganocake</div>
+      <a class="navbar-brand" href="/"><span class="text-dark">NaganoCake</span></a>
         <ul class="navbar-nav ml-auto">
         <!--会員-->
       <% if customer_signed_in? %>
@@ -28,7 +27,7 @@
           <%= link_to "会員一覧",admin_customers_path,class: 'btn btn-sm btn-outline-dark' %>
         </li>
         <li>
-          <%= link_to "注文履歴一覧",admin_admin_path,class: 'btn btn-sm btn-outline-dark' %>
+          <%= link_to "注文履歴一覧",admin_path,class: 'btn btn-sm btn-outline-dark' %>
         </li>
         <li>
           <%= link_to "ジャンル一覧",admin_genres_path,class: 'btn btn-sm btn-outline-dark' %>
@@ -49,9 +48,11 @@
         <li>
           <%= link_to "ログイン",new_customer_session_path,class: 'btn btn-sm btn-outline-dark' %>
         </li>
+        <li>
+          <%= link_to "管理者ログイン",new_admin_session_path,class: 'btn btn-sm btn-outline-dark' %>
+        </li>
       <% end %>
       </ul>
-      </div>
     </div>
   </nav>
   <p class="border"></p>
