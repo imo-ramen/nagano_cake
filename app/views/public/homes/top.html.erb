@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
      <div class="welcome">
-      <div class="background_image">no.image.jpg</div>
+      <div class="background_image"><%= image_tag 'cancel-on.png', size: '100x100' %></div>
         <div class='col'>
           <p>ようこそ、ながのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。<br>
@@ -11,14 +11,22 @@
         </div>
     </div>
   </div>
+  <h3>新着商品</h3>
   <div class="row">
-    <h3>新着商品</h3>
-      <div class="col">
-        <%# @items each do |item| %>
-          <%# if item.image.attached? %>
-            <%#= image_tag item.image, size: '100x100' %>
-          <%# else %>
-            <%#= image_tag 'no.image.jpg', size: '100x100' %>
-      </div>
+
+        <% @items.each do |item| %>
+        <div class="col-3">
+          <% if item.item_image.attached? %>
+            <%= image_tag item.item_image, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: "200x200" %>
+          <% end %>
+          <div><%= item.name %></div>
+
+          <p>￥<%= item.price.to_s(:delimited) %></p>
+          </div>
+          <% end %>
+
+
   </div>
 </div>

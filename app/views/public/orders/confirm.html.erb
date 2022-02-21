@@ -10,18 +10,19 @@
             <th>小計</th>
           </thead>
           <tbody>
+            <% sum = 0 %>
             <% @item.each do |item| %>
             <tr>
               <td>
               <%#= 画像 %>
               <%= item.item.name %>
               </td>
-              <td>
-                <%= item.item.with_tax_price.to_s(:delimited) %>
-              </td>
+              <td><%= item.item.add_tax_price.to_s(:delimited) %></td>
               <td><%= item.amount %></td>
               <td><%= item.subtotal.to_s(:delimited) %></td>
             </tr>
+            <span><% sum += item.subtotal %></span>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -33,13 +34,13 @@
           </tr>
           <tr>
           　<th>商品合計</th>
-            <td><%= item.subtotal.to_s(:delimited) %></td>
+            <td><%= sum.to_s(:delimited) %></td>
           </tr>
           <tr>
           　<th>請求金額</th>
-            <td><%= ( item.subtotal + 800).to_s(:delimited) %></td>
+            <td><%= ( sum + 800).to_s(:delimited) %></td>
           </tr>
-          <% end %>
+
         </table>
       </div>
   </div>

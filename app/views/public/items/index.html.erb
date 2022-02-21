@@ -6,9 +6,16 @@
 <% @items.each do |item| %>
 <div class="col-3 pr-4">
 
-    <div><%= image_tag item.get_item_image %></div>
+    <div>
+    <% if item.item_image.attached? %>
+      <%= image_tag item.item_image, size: "100x100" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', size: "200x200" %>
+    <% end %>
+    </div>
+
     <%= link_to item.name ,item_path(item.id) %>
-    <p>￥<%= item.price %></p>
+    <p>￥<%= item.price.to_s(:delimited) %></p>
 
 
 </div>
