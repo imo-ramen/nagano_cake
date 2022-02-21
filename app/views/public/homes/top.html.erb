@@ -1,32 +1,31 @@
 <div class="container">
-  <div class="row">
+  <div class="text-center mx-auto">
      <div class="welcome">
       <div class="background_image"><%= image_tag 'cancel-on.png', size: '100x100' %></div>
-        <div class='col'>
+
           <p>ようこそ、ながのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。<br>
             会員でない方も商品の閲覧はできますが、<br>
             購入には会員登録が必要になります。
           </P>
-        </div>
+
     </div>
   </div>
-  <h3>新着商品</h3>
-  <div class="row">
+  <h3 class="font-weight-bold">新着商品</h3>
+  <div class="row font-weight-bold">
 
-        <% @items.each do |item| %>
+        <% @items.last(4).reverse.each do |item| %>
         <div class="col-3">
           <% if item.item_image.attached? %>
-            <%= image_tag item.item_image, size: "100x100" %>
+            <%= image_tag item.item_image, size: "150x100" %>
           <% else %>
-            <%= image_tag 'no_image.jpg', size: "200x200" %>
+            <%= image_tag 'no_image.jpg', size: "150x100" %>
           <% end %>
           <div><%= item.name %></div>
 
           <p>￥<%= item.price.to_s(:delimited) %></p>
           </div>
           <% end %>
-
-
   </div>
+  <%= link_to "全ての商品を見る＞", items_path %>
 </div>

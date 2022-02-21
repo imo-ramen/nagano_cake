@@ -65,6 +65,7 @@
         </div>
       </div>
       <div class="col">
+
         <!--<%#= link_to "注文を確定する", complete_orders_path, class: "btn btn-success" %>-->
         <%= form_with model: @order,url: orders_path,method: :post, local: true do |f| %>
           <%= f.hidden_field :customer_id, value: current_customer.id %>
@@ -80,4 +81,5 @@
       </div>
    </div>
  <!--ステータスにかんしては絶対入金待ちからスタートだから送る必要ない。クレジットは選択する必要あるから送る。-->
+
 <!--enumを使うために、デフォルト値が必要になる。orderテーブルのステータスとペイメントに-->
