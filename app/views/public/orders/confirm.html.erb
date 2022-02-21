@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+      <div class="col">
+        <h6>注文情報確認</h6>
+        <table class="table table-bordered">
+          <thead>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+          </thead>
+          <tbody>
+            <% sum = 0 %>
+            <% @item.each do |item| %>
+            <tr>
+              <td>
+              <%#= 画像 %>
+              <%= item.item.name %>
+              </td>
+              <td><%= item.item.add_tax_price.to_s(:delimited) %></td>
+              <td><%= item.amount %></td>
+              <td><%= item.subtotal.to_s(:delimited) %></td>
+            </tr>
+            <span><% sum += item.subtotal %></span>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4">
+　　　  <table class="table table-bordered">
+          <tr>
+            <th>送料</th>
+            <td>800</td>
+          </tr>
+          <tr>
+          　<th>商品合計</th>
+            <td><%= sum.to_s(:delimited) %></td>
+          </tr>
+          <tr>
+          　<th>請求金額</th>
+            <td><%= ( sum + 800).to_s(:delimited) %></td>
+          </tr>
+
+        </table>
+      </div>
+  </div>
+      <div class="row">
+        <div class="col">
+          <table>
+            <tr>
+              <th>支払方法</th>
+              <td class="col">
+                <%= Order.payment_methods_i18n[@order.payment_method] %>
+              </td>
+            </tr>
+            <tr>
+              <th>お届け先</th>
+              <td class="col">
+                〒<%= @order.postal_code %><br>
+                  <%= @order.address %><br>
+                  <%= @order.name %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="col">
+        <%= link_to "注文を確定する", complete_orders_path, class: "btn btn-success" %>
+      </div>
+ </div>

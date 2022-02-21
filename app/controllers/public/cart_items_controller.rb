@@ -6,6 +6,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    # 質問する:cart_item？
+    redirect_to request.referer and return if params[:cart_item][:amount].blank?
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
     cart_items = current_customer.cart_items
@@ -38,7 +40,6 @@ class Public::CartItemsController < ApplicationController
     cart_items.destroy_all
     redirect_to request.referer
   end
-
 
   private
   def cart_item_params
