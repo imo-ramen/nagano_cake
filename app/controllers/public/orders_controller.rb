@@ -18,13 +18,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+
   end
 
   def confirm
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-
+    @item =current_customer.cart_items
     if
       params[:order][:customer_address] == "a"
       @order.address = current_customer.address
