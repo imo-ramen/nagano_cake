@@ -1,5 +1,5 @@
 <div class="container">
-  <h7 style="background-color:grey;color:white;width:80px">注文履歴一覧</h7>
+  <h6 style="background-color:#EEEEEE;color:dark;display:inline">注文履歴一覧</h6>
   <table class='table'>
     <thead>
       <tr>
@@ -16,7 +16,7 @@
             <%= link_to order.updated_at.strftime('%Y/%m/%d %H:%M:%S') ,admin_order_path(order.id) %>
           </td>
           <td><%= order.name %></td>
-          <td><%#= order.order_details.sum(:amount) %></td>
+          <td><%= order.order_details.sum(:amount) %></td>
           <td><%= order.status %></td>
         </tr>
       <% end %>

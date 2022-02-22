@@ -1,5 +1,5 @@
 <div class="container">
-  <h5 style="background-color:grey;color:dark;width:80px">商品一覧</h5>
+  <h6 style="background-color:#EEEEEE;color:dark;display:inline">商品一覧</h6>
 
   <%= link_to new_admin_item_path, class: 'nav-link' do %>
     <i class='fa-solid fa-circle-plus'></i>
@@ -20,7 +20,9 @@
         <tr>
           <td><%= item.id %></td>
           <td>
-            <%= link_to item.name ,admin_item_path(item.id) %>
+            <p class="link_color">
+              <%= link_to item.name ,admin_item_path(item.id) %>
+            </p>
           </td>
           <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre.name %></td>
