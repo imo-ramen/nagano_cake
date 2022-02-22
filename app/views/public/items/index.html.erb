@@ -8,14 +8,14 @@
 
     <div>
     <% if item.item_image.attached? %>
-      <%= image_tag item.item_image, size: "100x100" %>
+      <%= image_tag item.item_image, size: "150x100" %>
     <% else %>
-      <%= image_tag 'no_image.jpg', size: "200x200" %>
+      <%= image_tag 'no_image.jpg', size: "150x100" %>
     <% end %>
     </div>
 
     <%= link_to item.name ,item_path(item.id) %>
-    <p>￥<%= item.price.to_s(:delimited) %></p>
+    <p>￥<%= item.price.to_s(:delimited) %>-</p>
 
 
 </div>

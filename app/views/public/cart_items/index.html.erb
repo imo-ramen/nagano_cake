@@ -12,17 +12,24 @@
       <div class="col">
         <table class="table table-bordered">
           <thead>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th></th>
+            <th class="bg-light">商品名</th>
+            <th class="bg-light">単価（税込）</th>
+            <th class="bg-light">数量</th>
+            <th class="bg-light">小計</th>
+            <th class="bg-light"></th>
           </thead>
           <tbody>
             <% sum = 0 %>
             <% @cart_items.each do |cart_item| %>
             <tr>
-              <td><%=cart_item.item.name %></td>
+              <td>
+              <% if cart_item.item.item_image.attached? %>
+                <%= image_tag cart_item.item.item_image, size: "60x40" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', size: "60x40" %>
+              <% end %>
+              <%=cart_item.item.name %>
+              </td>
               <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
               <td>
                 <%= form_with model:cart_item, url: cart_item_path(cart_item.id),method: :patch, local:true do |f| %>
@@ -40,22 +47,15 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
+    <div class="row d-flex bd-highlight">
+      <div class="p-2 flex-grow-1 bd-highlight">
         <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <table class="table table-bordered">
-          <thead>
-            <td>合計金額</td>
-          </thead>
-          <tbody>
-            <td><%= sum.to_s(:delimited) %></td>
-          </tbody>
-        </table>
+      <div class="p-2 bd-highlight border border-dark bg-light">
+        <td>合計金額</td>
+      </div>
+      <div class="p-2 bd-highlight border border-dark">
+        <td><%= sum.to_s(:delimited) %></td>
       </div>
     </div>
 
