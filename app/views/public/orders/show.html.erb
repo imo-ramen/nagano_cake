@@ -40,6 +40,7 @@
         </tr>
         <tr>
           <td>ご請求額</td>
+
           <td><%= (@order.total_payment ).to_s(:delimited) %></td>
         </tr>
       </table>
@@ -56,12 +57,13 @@
             <th>小計</th>
           </tr>
           <tbody>
-            <% @order.order_details.each do |item| %>
+            <% @order.order_details.each do |order_detail| %>
             <tr>
-              <td><%= item.item.name %></td>
-              <td><%= item.item.add_tax_price %></td>
-              <td><%= item.amount %></td>
-              <td><%= item.add_tax_price * item.amount %></td>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.item.add_tax_price %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.item.add_tax_price * order_detail.amount %></td>
+
             </tr>
             <% end %>
           </tbody>
