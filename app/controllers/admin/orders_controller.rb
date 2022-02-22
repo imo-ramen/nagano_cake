@@ -8,11 +8,12 @@ class Admin::OrdersController < ApplicationController
  def update
     @order = Order.find(params[:id])
       @order.update(order_params)
-      if params[:order][:status]
-
-      redirect_to request.referer
+      if params[:order][:status] == "入金確認"
+        @order.order_details.update(making_status:1)
       end
+    redirect_to request.referer
  end
+
 
  private
   # ストロングパラメータ
