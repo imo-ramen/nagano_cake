@@ -22,7 +22,7 @@
           </tr>
           <tr>
             <td>ステータス</td>
-            <td><%#= @order.status_i18n %></td>
+            <td><%= @order.status %></td>
           </tr>
       </table>
     </div>
@@ -56,14 +56,14 @@
             <th>小計</th>
           </tr>
           <tbody>
-            <%# @order.orders_details.each do |item| %>
+            <% @order.order_details.each do |item| %>
             <tr>
-              <td><%#= item.item.name %></td>
-              <td><%#= item.item.add_tax_price %></td>
-              <td><%#= item.amount %></td>
-              <td><%#= item.subtotal.to_s(:delimited) %></td>
+              <td><%= item.item.name %></td>
+              <td><%= item.item.add_tax_price %></td>
+              <td><%= item.amount %></td>
+              <td><%#= item.total_payment %></td>
             </tr>
-            <%# end %>
+            <% end %>
           </tbody>
         </table>
       </div>
