@@ -32,7 +32,7 @@
       <table class="table table-bordered">
         <tr>
           <td>商品合計</td>
-          <td><%= (@order.total_payment - 800).to_s(:delimited) %></td>
+          <td><%= (@order.total_payment - 800 ).to_s(:delimited) %></td>
         </tr>
         <tr>
           <td>配送料</td>
@@ -40,7 +40,8 @@
         </tr>
         <tr>
           <td>ご請求額</td>
-          <td><%= (@order.total_payment).to_s(:delimited) %></td>
+
+          <td><%= (@order.total_payment ).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
@@ -62,6 +63,7 @@
               <td><%= order_detail.item.add_tax_price %></td>
               <td><%= order_detail.amount %></td>
               <td><%= order_detail.item.add_tax_price * order_detail.amount %></td>
+
             </tr>
             <% end %>
           </tbody>

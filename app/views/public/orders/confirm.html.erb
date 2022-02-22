@@ -14,7 +14,6 @@
             <% @item.each do |item| %>
             <tr>
               <td>
-              <%#= 画像 %>
               <%= item.item.name %>
               </td>
               <td><%= item.item.add_tax_price.to_s(:delimited) %></td>
