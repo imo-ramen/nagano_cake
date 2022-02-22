@@ -44,8 +44,8 @@
             <th>製作ステータス</th>
           </tr>
         </thead>
+        <% sum = 0 %>
         <tbody>
-          <% sum = 0 %>
           <% @order_details.each do |order_detail| %>
             <tr>
               <td><%= order_detail.item_id.name %></td>

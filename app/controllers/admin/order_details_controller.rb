@@ -4,10 +4,7 @@ class Admin::OrderDetailsController < ApplicationController
     @order_detail = Order_detail.find(params[:id])
     @order = @order_detail.order
     @order_detail.update(order_detail_params)
-    if @order
-
-    end
-      redirect_to request.referer
+    redirect_to request.referer
  end
 
 

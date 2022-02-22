@@ -12,6 +12,9 @@ class Order < ApplicationRecord
       発送済み: 4  
    }
   
+  def subtotal
+    item.with_tax_price * amount
+  end
   
   
 end
