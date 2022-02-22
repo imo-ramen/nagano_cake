@@ -6,23 +6,23 @@
       <table class="table table-bordered">
           <tr>
             <td>注文日</td>
-            <td><%#= @order.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <td>配送先</td>
             <td>
-               〒<%#= @order.postal_code %><br>
-               <%#= @order.address %><br>
-               <%#= @order.name %><br>
+               〒<%= @order.postal_code %><br>
+               <%= @order.address %><br>
+               <%= @order.name %><br>
             </td>
           </tr>
           <tr>
             <td>支払方法</td>
-            <td><%#= @order.payment_methods_i18n %></td>
+            <td><%= @order.payment_method_i18n %></td>
           </tr>
           <tr>
             <td>ステータス</td>
-            <td><%#= @order.status_i18n %></td>
+            <td><%= @order.status %></td>
           </tr>
       </table>
     </div>
@@ -32,7 +32,7 @@
       <table class="table table-bordered">
         <tr>
           <td>商品合計</td>
-          <td><%#= (@order.total_payment).to_s(:delimited) %></td>
+          <td><%= (@order.total_payment).to_s(:delimited) %></td>
         </tr>
         <tr>
           <td>配送料</td>
@@ -40,7 +40,7 @@
         </tr>
         <tr>
           <td>ご請求額</td>
-          <td><%#= (@order.total_payment + 800).to_s(:delimited) %></td>
+          <td><%= (@order.total_payment + 800).to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
@@ -56,14 +56,15 @@
             <th>小計</th>
           </tr>
           <tbody>
-            <%# @order.order_details.each do |item| %>
+            <% sum = 0 %>
+            <% @order.order_details.each do |item| %>
             <tr>
-              <td><%#= item.item.name %></td>
-              <td><%#= item.item.add_tax_price %></td>
-              <td><%#= item.amount %></td>
-              <td><%#= item.subtotal.to_s(:delimited) %></td>
+              <td><%= item.item.name %></td>
+              <td><%= item.item.add_tax_price %></td>
+              <td><%= item.amount %></td>
+              <td><%#= item.total_payment %></td>
             </tr>
-            <%# end %>
+            <% end %>
           </tbody>
         </table>
       </div>
