@@ -6,7 +6,7 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save!
+    if @item.save
       #リダイレクトと同時にフラッシュメッセージの実装
       flash[:notice] = 'You have created item successfully'
       redirect_to admin_item_path(@item.id)
