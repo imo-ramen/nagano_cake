@@ -1,0 +1,31 @@
+<div class ="container">
+  <h3>商品一覧<small>(全</small><small><%= @items.count %></small><small>件)</small></h3>
+  <div class="row">
+
+
+<% @items.each do |item| %>
+<div class="col-3 pr-4">
+
+    <div>
+    <% if item.item_image.attached? %>
+      <%= image_tag item.item_image, size: "150x100" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', size: "150x100" %>
+    <% end %>
+    </div>
+
+    <%= link_to item.name ,item_path(item.id) %>
+    <p>￥<%= item.price.to_s(:delimited) %>-</p>
+
+
+</div>
+<% end %>
+
+
+  </div>
+</div>
+
+
+
+
+

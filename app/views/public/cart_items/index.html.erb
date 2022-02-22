@@ -1,1 +1,67 @@
-<p>cart_items/index</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>ショッピングカート</h3>
+      </div>
+      <div class="col">
+        <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %>
+      </div>
+  </div>
+
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered">
+          <thead>
+            <th class="bg-light">商品名</th>
+            <th class="bg-light">単価（税込）</th>
+            <th class="bg-light">数量</th>
+            <th class="bg-light">小計</th>
+            <th class="bg-light"></th>
+          </thead>
+          <tbody>
+            <% sum = 0 %>
+            <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+              <% if cart_item.item.item_image.attached? %>
+                <%= image_tag cart_item.item.item_image, size: "60x40" %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', size: "60x40" %>
+              <% end %>
+              <%=cart_item.item.name %>
+              </td>
+              <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+              <td>
+                <%= form_with model:cart_item, url: cart_item_path(cart_item.id),method: :patch, local:true do |f| %>
+                  <%= f.select :amount, *[1..100] %>
+                  <%= f.submit "変更", class: "btn btn-sm btn-success" %>
+                <% end %>
+              </td>
+              <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+              <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
+            </tr>
+            <span><% sum += cart_item.subtotal %></span>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row d-flex bd-highlight">
+      <div class="p-2 flex-grow-1 bd-highlight">
+        <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
+      </div>
+      <div class="p-2 bd-highlight border border-dark bg-light">
+        <td>合計金額</td>
+      </div>
+      <div class="p-2 bd-highlight border border-dark">
+        <td><%= sum.to_s(:delimited) %></td>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mx-auto">
+        <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+      </div>
+    </div>
+</div>

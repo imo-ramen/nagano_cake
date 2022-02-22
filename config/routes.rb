@@ -1,25 +1,30 @@
 Rails.application.routes.draw do
-  devise_for :admins,skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-  }
-
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-  }
 
   root to: "public/homes#top"
   get "about" =>"public/homes#about"
-
-  get "items" => "public/items#index"
-  get "items/:id" => "public/items#show"
-
 
 
 
   get "customers/my_page" => "public/customers#show"
 
   scope module: :public do
+
+    resources :items, only: [:index, :show]
+
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+    collection do
+      delete :destroy_all
+    end
+  end
+
+    resources :orders, only: [:new, :create, :index, :show] do
+    collection do
+      post :confirm
+      get :complete
+    end
+  end
+
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resource :customers,only: [:edit,:update] do
       collection do
         get :unsubscribe
@@ -28,35 +33,23 @@ Rails.application.routes.draw do
     end
   end
 
-  get "cart_items" => "public/cart_items#index"
-  patch "cart_items/:id" => "public/cart_items#update"
-  delete "cart_items/:id" => "public/cart_items#destroy"
-  delete "cart_items/destroy_all" => "public/cart_items#destroy_all"
-  post "cart_items" => "public/cart_items#create"
-
-  get "orders/new" => "public/orders#new"
-  post "orders/confirm" => "public/orders#confirm"
-  get "orders/complete" => "public/orders#complete"
-  post "orders" => "public/orders#create"
-  get "orders" => "public/orders#index"
-  get "orders/:id" => "public/orders#show"
-
-  get "addresses" => "public/addresses#index"
-  get "addresses/:id/edit" => "public/addresses#edit"
-  post "addresses" => "public/addresses#create"
-  patch "addresses/:id" => "public/addresses#update"
-  delete "addresses/:id" => "public/addresses#destroy"
-
-
   namespace :admin do
-    get "admin" => "admin/homes#top"
+    get "/" => "homes#top"
     resources :items,except: [:destroy]
     resources :genres,only: [:index,:create,:edit,:update]
     resources :customers,only: [:index,:show,:edit,:update]
     resources :orders,only: [:show,:update]do
-      resources :orders_details,only: [:update]
+    resources :orders_details,only: [:update]
   end
   end
 
+  devise_for :admins,skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+  }
+
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
