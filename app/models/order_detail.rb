@@ -9,6 +9,10 @@ class OrderDetail < ApplicationRecord
       製作完了: 3,  
    }
   
+  def  add_tax_price
+    (self.price * 1.10).round
+  end
+  
   # has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # has_many :followings, through: :relationships, source: :followed

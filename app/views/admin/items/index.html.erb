@@ -1,5 +1,10 @@
 <div class="container">
   <h5 style="background-color:grey;color:white;width:80px">商品一覧</h5>
+
+  <%= link_to new_admin_item_path, class: 'nav-link' do %>
+    <i class='fa-solid fa-circle-plus'></i>
+  <% end %>
+
   <table class='table'>
     <thead>
       <tr>
