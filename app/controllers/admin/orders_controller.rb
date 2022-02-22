@@ -14,6 +14,7 @@ class Admin::OrdersController < ApplicationController
     redirect_to request.referer
  end
 
+
  private
   # ストロングパラメータ
   def order_params
