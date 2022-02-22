@@ -2,12 +2,12 @@
    <h5 style="background-color:grey;color:white;width:80px">商品詳細</h5>
    <div class="row">
     <% if @item.item_image.attached? %>
-      <%= image_tag @item.item_image, size: "100x100" %>
+      <%= image_tag @item.item_image, size: "200x150" %>
     <% else %>
       <%= image_tag 'no_image.jpg', size: "200x200" %>
     <% end %>
-    
-    
+
+
    </div>
    <div class='row'>
      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
@@ -31,9 +31,13 @@
           <tr>
             <td>販売ステータス</td>
             <td><% if @item.is_active == true %>
+            <p class="font-weight-bold text-success">
               <%= "販売中" %>
+            </p>
             <% else %>
+            <p class="text-secondary">
               <%= "販売停止中" %>
+              </p>
             <% end %>
             </td>
           </tr>

@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :genre
 
   has_one_attached :item_image
-  validates :name, :introduction, :price, :is_active, presence: :true
+  validates :name, :introduction, :price, presence: :true
 
   def  add_tax_price
   (self.price * 1.10).round
