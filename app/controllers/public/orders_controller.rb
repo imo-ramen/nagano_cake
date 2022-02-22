@@ -22,6 +22,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+  @shipping_cost = 800
+
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @item =current_customer.cart_items
