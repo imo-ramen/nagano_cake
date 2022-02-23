@@ -2,22 +2,24 @@
   <div class="row">
     <h6><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h6>
   </div>
-  <div>
-    会員ID <%= @customer.id %>
+  <form class=”form-inline”>
+  <div class="form-group">
+    <label for="customer">会員ID</label>
+    <%= @customer.id %>
   </div>
   <%= form_with model: @customer, url: admin_customer_path, method: :patch, local:true do |f| %>
-    <div class="row form-group">
-      <%= f.label :氏名 %>
-      <%= f.text_field :last_name %>
-      <%= f.text_field :first_name %>
+    <div class="form-group">
+      <label for="customer"><%= f.label :氏名 %></label>
+       <%= f.text_field :last_name, class:"form-control" %>
+       <%= f.text_field :first_name %>
     </div>
-    <div class="row form-group">
+    <div class="form-group">
       <%= f.label :フリガナ %>
       <%= f.text_field :last_name_kana %>
       <%= f.text_field :first_name_kana %>
     </div>
 
-    <div class="row form-group">
+    <div class="orm-group">
       <%= f.label :郵便番号 %>
       <%= f.text_field :postal_code %>
     </div>
@@ -27,7 +29,7 @@
       <%= f.text_field :address %>
     </div>
 
-    <div class="row form-group">
+    <div class="form-group">
       <%= f.label :電話番号 %>
       <%= f.text_field :telephone_number %>
     </div>
@@ -37,7 +39,7 @@
       <%= f.text_field :email %>
     </div>
 
-    <div class="row form-group">
+    <div class="form-group">
       <label for="customer_status" class="col-sm-4">会員ステータス</label>
       <div class="col-sm-8">
        <%= f.radio_button :is_deleted, false %>
@@ -48,8 +50,9 @@
       </div>
     </div>
 
-    <div class="row form-group">
+    <div class="form-group">
       <%= f.submit "変更を保存", class: "btn btn-success" %>
     </div>
   <% end %>
 </div>
+</form>
