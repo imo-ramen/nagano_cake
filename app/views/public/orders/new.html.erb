@@ -26,9 +26,12 @@
     <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display) %>
     </div>
 
+    <div>
+      <%= f.radio_button :customer_address, "c" %>
+      <%= f.label :customer_address, "新しいお届け先" %>
+    </div>
 
-    <%= f.radio_button :customer_address, "c" %>
-    <%= f.label :customer_address, "新しいお届け先" %>
+
     <div class= "row form-group">
     <%= f.label "郵便番号（ハイフンなし）", class: "col" %>
     <%= f.text_field :postal_code, class: "form-control", placeholder:"000000000000" %>
@@ -42,7 +45,7 @@
       <%= f.text_field :name, class:"form-control", placeholder:"令和道子"%>
     </div>
 
-    <div class= "col mx-auto">
+    <div class= "row justify-content-center">
       <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
     </div>
     <% end %>
