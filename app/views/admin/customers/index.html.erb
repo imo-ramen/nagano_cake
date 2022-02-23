@@ -1,7 +1,7 @@
 <div class="container">
-   <h5 style="background-color:grey;color:white;width:80px">会員一覧</h5>
+   <h6 style="background-color:#EEEEEE;color:dark;display:inline">会員一覧</h6>
    <table class='table'>
-    <thead>
+    <thead class="bg-light text-dark">
       <tr>
         <th>会員ID</th>
         <th>氏名</th>
@@ -21,9 +21,13 @@
           <td><%= customer.email %></td>
           <td>
             <% if customer.is_deleted == false %>
+            <p class="font-weight-bold text-success">
               <%= "有効" %>
+            </p>
             <% else %>
+            <p class="text-secondary">
               <%= "退会" %>
+            </p>
             <% end %>
           </td>
         </tr>

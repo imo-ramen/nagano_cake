@@ -61,7 +61,13 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+
   protected
+
+  def after_sign_up_path_for(resource)
+    customers_my_page_path(resource)
+  end
+
   # privateは記述をしたコントローラ内でしか参照できません。
   # configure_permitted_parametersメソッドでは、
   # devise_parameter_sanitizer.permitメソッドを使うことで

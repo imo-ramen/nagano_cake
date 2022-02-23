@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :blank_or_not_active, only: [:create]
 
   def index
     @cart_items = current_customer.cart_items
@@ -44,5 +45,10 @@ class Public::CartItemsController < ApplicationController
   private
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
+  end
+  
+  def blank_or_not_active
+    redirect_to request.referer and return unless Item.find(params[:item_id]).is_active #なくてもいい
+    redirect_to request.referer and return if params[:cart_item][:amount].blank?
   end
 end
