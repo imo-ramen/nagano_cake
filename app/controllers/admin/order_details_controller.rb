@@ -7,8 +7,10 @@ class Admin::OrderDetailsController < ApplicationController
     if params[:order_detail][:making_status] == "製作中"
       @order.update(status:2)
     else
-      params[:order_detail][:making_status] == "製作完了"
-      @order.update(status:3)
+      if @order.order_details.where(making_status:3).count == @order.order_details.count
+        # 左がmaking_status:3のものはなんこあるか　＝　注文詳細の数のカウント
+        @order.update(status:3)
+      end
     end
     redirect_to request.referer
  end
