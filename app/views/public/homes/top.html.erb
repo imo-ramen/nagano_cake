@@ -11,11 +11,14 @@
 
         <% @items.last(4).reverse.each do |item| %>
         <div class="col-3">
+          <%= link_to(item) do %>
           <% if item.item_image.attached? %>
             <%= image_tag item.item_image, size: "150x100" %>
           <% else %>
             <%= image_tag 'no_image.jpg', size: "150x100" %>
           <% end %>
+          <% end %>
+
           <div><%= item.name %></div>
 
           <p>￥<%= item.price.to_s(:delimited) %>-</p>
