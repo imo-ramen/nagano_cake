@@ -46,9 +46,9 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
   end
-  
+
   def blank_or_not_active
-    redirect_to request.referer and return unless Item.find(params[:item_id]).is_active #なくてもいい
+    # redirect_to request.referer and return unless Item.find(params[:item_id]).is_active
     redirect_to request.referer and return if params[:cart_item][:amount].blank?
   end
 end
