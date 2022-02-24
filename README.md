@@ -1,24 +1,15 @@
-# README
+## Nagano_cake
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+長野県にあるケーキ屋のECサイト。
 
-Things you may want to cover:
+### ホームページ
+https://4cce49809ac8463d8f539575fcac28e1.vfs.cloud9.us-east-1.amazonaws.com/
 
-* Ruby version
+### ER図
+https://user-images.githubusercontent.com/91400592/155268471-d3c410d1-13cd-4221-ab84-1577890bf11f.png
 
-* System dependencies
+### アプリケーション設計書
+https://github.com/imo-ramen/nagano_cake/files/8122415/3.pdf
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### テーブル定義書
+https://github.com/imo-ramen/nagano_cake/files/8122419/2.xlsx
