@@ -1,8 +1,8 @@
 <div class="container">
+  <h6 style="background-color:#EEEEEE;color:dark;display:inline">ジャンル編集</h6>
   <div class="row">
-    <h6 style="background-color:#EEEEEE;color:dark;display:inline">ジャンル編集</h6>
+    <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
     <table class='table table-borderless'>
-        <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
         <thead>
           <tr>
             <th><%= f.label :name,"ジャンル名" %></th>
