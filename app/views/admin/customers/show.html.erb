@@ -1,8 +1,8 @@
 <div class="container">
-   <h5 style="background-color:grey;color:white;width:220px"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h5>
+   <h6 style="background-color:#EEEEEE;color:dark;display:inline"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h6>
    <div class='row'>
-     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        <table class="table">
+     <div class="col-12 px-5 px-sm-0 mx-auto">
+        <table class="table table-borderless">
           <tr>
             <td>会員ID</td>
             <td><%= @customer.id %></td>
@@ -33,14 +33,18 @@
           <tr>
             <td>会員ステータス</td>
             <td><% if @customer.is_deleted == false %>
+            <p class="font-weight-bold text-success">
               <%= "有効" %>
+            </p>
             <% else %>
+            <p class="text-secondary">
               <%= "退会" %>
+            </p>
             <% end %>
             </td>
           </tr>
           <tr>
-            <td><%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-sm btn-success edit_admin_customer_#{@customer.id}" %></td>
+            <td><%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-success edit_admin_customer_#{@customer.id}" %></td>
             <td><%= link_to '注文履歴一覧を見る', admin_path , class: "btn btn-primary" %></td>
           </tr>
         </table>
