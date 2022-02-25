@@ -8,14 +8,14 @@
     <div class="col-5">
       <%= f.label :メールアドレス %>
     </div>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, :value => "a@a", autofocus: true, autocomplete: "email" %>
   </div>
 </br>
   <div class="field col-7 mx-auto row">
     <div class="col-5">
        <%= f.label :パスワード %>
     </div>
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, :value => "123456", autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>

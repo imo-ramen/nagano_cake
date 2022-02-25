@@ -10,6 +10,12 @@ class Admin::GenresController < ApplicationController
         redirect_to request.referer
     end
 
+    def destroy
+        genre = Genre.find(params[:id])
+        genre.destroy
+        redirect_to request.referer
+    end
+
 
     def edit
         @genre = Genre.find(params[:id])
