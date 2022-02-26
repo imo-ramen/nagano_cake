@@ -1,10 +1,18 @@
 <div class="container">
-  <div class="text-center mx-auto">
-          <p class="greeting">ようこそ、ながのCAKEへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-            購入には会員登録が必要になります。
-          </P>
+
+
+        <div class="list-group-item disabled" aria-disabled="true">ジャンル検索</div>
+      <% @genres.each do |genre| %>
+        <div class="list-group-item"><%= link_to genre.name, genresearch_path(content: genre.name) %></div>
+      <% end %>
+
+
+  <div class="text-center">
+    <h3 class="greeting">ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。
+    </h3>
   </div>
   <h3 class="font-weight-bold">新着商品</h3>
   <div class="row font-weight-bold">

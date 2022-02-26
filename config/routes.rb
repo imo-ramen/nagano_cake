@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root to: "public/homes#top"
   get "about" =>"public/homes#about"
 
-
+  # 検索機能
+  get "search", to: 'searches#search'
+  get "genresearch", to: 'searches#genresearch'
 
   get "customers/my_page" => "public/customers#show"
 

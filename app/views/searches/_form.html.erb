@@ -1,0 +1,5 @@
+<!--headerのサーチフォーム-->
+<%= form_with url: search_path, method: :get, local: true do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit '🔍' %>
+<% end %>
