@@ -1,20 +1,20 @@
 <div class="container">
-
-
-        <div class="list-group-item disabled" aria-disabled="true">ジャンル検索</div>
+  <div class="row">
+    <div class="col-md-3">
+      <li class="list-group-item disabled" aria-disabled="true">ジャンル検索</li>
       <% @genres.each do |genre| %>
-        <div class="list-group-item"><%= link_to genre.name, genresearch_path(content: genre.name) %></div>
+        <li class="list-group-item"><%= link_to genre.name, genresearch_path(content: genre.name) %></li>
       <% end %>
-
-
-  <div class="text-center">
+    </div>
+    <div class="col-md-8">
+        <div class="text-center">
     <h3 class="greeting">ようこそ、ながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品の閲覧はできますが、<br>
       購入には会員登録が必要になります。
     </h3>
   </div>
-  <h3 class="font-weight-bold">新着商品</h3>
+    <h3 class="font-weight-bold">新着商品</h3>
   <div class="row font-weight-bold">
 
         <% @items.last(4).reverse.each do |item| %>
@@ -34,4 +34,16 @@
           <% end %>
   </div>
   <%= link_to "全ての商品を見る＞", items_path %>
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
