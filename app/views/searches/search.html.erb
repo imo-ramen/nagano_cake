@@ -1,0 +1,47 @@
+
+ <%if customer_signed_in? %>
+  <div class="container mt-3 mx-auto">
+    <div class="row">
+      <h3>Items search for "<%= @content %>"</h3>
+    </div>
+    
+    <div class="row justify-content-center">
+      <% count = 0 %>
+      <% @items.each do |item| %>
+      <div class="col-xl-3 col-md-3">
+        <% if item.item_image.attached? %>
+          <%= image_tag item.item_image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+        <p><%= link_to item.name, item_path(item.id) %></p>
+        <p>¥<%= item.price.to_s(:delimited) %></p>
+      </div>
+      　<% count += 1 %>
+      <% end %>
+    </div>
+      <h2>検索結果<%= count%>件</h2>
+  </div>
+  <% elsif admin_signed_in? %>
+  <div class="container mt-3 mx-auto">
+    <div class="row">
+      <h3>Items search for "<%= @content %>"</h3>
+    </div>
+    <div class="row justify-content-center">
+      <% count = 0 %>
+      <% @items.each do |item| %>
+      <div class="col-xl-3 col-md-3">
+        <% if item.item_image.attached? %>
+          <%= image_tag item.item_image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+        <p><%= link_to item.name, admin_item_path(item.id) %></p>
+        <p>¥<%= item.price.to_s(:delimited) %></p>
+      </div>
+      　<% count += 1 %>
+      <% end %>
+    </div>
+    <h2>検索結果<%= count%>件</h2>
+　</div>
+  <%end%>
