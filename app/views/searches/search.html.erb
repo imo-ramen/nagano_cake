@@ -30,9 +30,9 @@
       <% @items.each do |item| %>
       <div class="col-xl-3 col-md-3">
         <% if item.image_id.attached? %>
-          <%= image_tag item.image_id, size: "200x200" %>
+          <%= image_tag item.image_id, size: "150x100" %>
         <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
+          <%= image_tag 'no_image', size: "150x100" %>
         <% end %>
         <p><%= link_to item.name, admin_item_path(item.id) %></p>
         <p>¥<%= item.price.to_s(:delimited) %></p>
