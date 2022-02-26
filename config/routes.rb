@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "about" =>"public/homes#about"
 
 
-
+  get '/search', to: 'searches#search'
   get "customers/my_page" => "public/customers#show"
 
   scope module: :public do
