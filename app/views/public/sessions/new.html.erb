@@ -12,14 +12,14 @@
             <div class="col-5">
               <%= f.label :メールアドレス %>
             </div>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email, autofocus: true, :value => "08033431635a@gmail.com", autocomplete: "email" %>
           </div>
           <br>
           <div class="field col-7 mx-auto row">
             <div class="col-5">
               <%= f.label :パスワード %>
             </div>
-            <%= f.password_field :password, autocomplete: "current-password" %>
+            <%= f.password_field :password, :value => "koizumi", autocomplete: "current-password" %>
           </div>
           <br>
           <div class="actions col-2 mx-auto">
